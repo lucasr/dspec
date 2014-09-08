@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Draw a baseline grid, keylines, and spacing marks on top of a {@link View}.
+ * Draw a baseline grid, keylines, and spacing markers on top of a {@link View}.
  *
  * A {@link DesignSpec} can be configure programmatically as follows:
  * <ol>
@@ -332,14 +332,14 @@ public class DesignSpec {
     }
 
     /**
-     * Whether or not the spacing marks should be drawn.
+     * Whether or not the spacing markers should be drawn.
      */
     public boolean areSpacingsVisible() {
         return mSpacingsVisible;
     }
 
     /**
-     * Sets the visibility of spacing marks.
+     * Sets the visibility of spacing markers.
      */
     public DesignSpec setSpacingsVisible(boolean visible) {
         if (mSpacingsVisible == visible) {

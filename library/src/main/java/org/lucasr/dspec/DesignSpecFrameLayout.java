@@ -28,7 +28,7 @@ import android.widget.FrameLayout;
  *
  * Enclose your target {@link android.view.View} with a {@link DesignSpecFrameLayout} and
  * use the {@code designSpec} custom attribute to populate the associated {@link DesignSpec}
- * with keylines and spacing marks defined in a raw JSON resource.
+ * with keylines and spacing markers defined in a raw JSON resource.
  *
  * @see DesignSpec
  */
