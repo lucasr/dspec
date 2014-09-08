@@ -45,7 +45,6 @@ public class DesignSpecFrameLayout extends FrameLayout {
 
     public DesignSpecFrameLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setWillNotDraw(false);
 
         final TypedArray a =
                 context.obtainStyledAttributes(attrs, R.styleable.DesignSpecFrameLayout, defStyle, 0);
@@ -57,8 +56,8 @@ public class DesignSpecFrameLayout extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
 
         if (mDesignSpec != null) {
             mDesignSpec.draw(canvas);
