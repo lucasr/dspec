@@ -31,22 +31,22 @@ You can also specify the design spec in a raw JSON resource like:
     "baselineGridCellSize": 8,
     "keylines": [
         { "offset": 16,
-          "from": LEFT },
+          "from": "LEFT" },
         { "offset": 72,
-          "from": LEFT },
+          "from": "LEFT" },
         { "offset": 16,
-          "from": RIGHT }
+          "from": "RIGHT" }
     ],
     "spacings": [
         { "offset": 0,
           "size": 16,
-          "from": LEFT },
+          "from": "LEFT" },
         { "offset": 56,
           "size": 16,
-          "from": LEFT },
+          "from": "LEFT" },
         { "offset": 0,
           "size": 16,
-          "from": RIGHT }
+          "from": "RIGHT" }
     ]
 }
 ```
