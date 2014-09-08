@@ -19,9 +19,9 @@ Get the associated `DesignSpec` instance with `getDesignSpec` and then you can:
  * Toggle keylines visibility with `setKeylinesVisible(boolean)`.
  * Change keylines color with `setKeylinesColor(int)`.
  * Add keylines with `addKeyline(int, From)`.
- * Toggle spacings visibility with `setSpacingsVisible(boolean)`.
- * Change spacings color with `setSpacingsColor(int)`.
- * Add spacing with `addSpacing(int, int, From)`.
+ * Toggle spacing markers visibility with `setSpacingsVisible(boolean)`.
+ * Change spacing markers color with `setSpacingsColor(int)`.
+ * Add spacing marker with `addSpacing(int, int, From)`.
 
 You can also specify the design spec in a raw JSON resource like:
 
