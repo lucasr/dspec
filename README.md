@@ -1,7 +1,7 @@
-DSpec
+dspec
 =====
 
-An easy way to draw UI specs on top of your Android UI.
+A simple way to define and render UI specs on top of your Android UI.
 
 ![](images/sample.png)
 
