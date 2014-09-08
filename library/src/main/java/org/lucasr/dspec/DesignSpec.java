@@ -52,22 +52,22 @@ import java.util.List;
  *     "baselineGridCellSize": 8,
  *     "keylines": [
  *         { "offset": 16,
- *           "from": LEFT },
+ *           "from": "LEFT" },
  *         { "offset": 72,
- *           "from": LEFT },
+ *           "from": "LEFT" },
  *         { "offset": 16,
- *           "from": RIGHT }
+ *           "from": "RIGHT" }
  *     ],
  *     "spacings": [
  *         { "offset": 0,
  *           "size": 16,
- *           "from": LEFT },
+ *           "from": "LEFT" },
  *         { "offset": 56,
  *           "size": 16,
- *           "from": LEFT },
+ *           "from": "LEFT" },
  *         { "offset": 0,
  *           "size": 16,
- *           "from": RIGHT }
+ *           "from": "RIGHT" }
  *     ]
  * }
  * </pre>
@@ -89,14 +89,14 @@ import java.util.List;
  *     android:id="@+id/design_spec"
  *     android:layout_width="match_parent"
  *     android:layout_height="match_parent"
- *     app:designSpec="@raw/material_design">
+ *     app:designSpec="@raw/my_spec">
  *
  *     ...
  *
  * </org.lucasr.dspec.DesignSpecFrameLayout>
  * </pre>
  *
- * Where {@code @raw/material_design} is a raw JSON resource. Because the {@link DesignSpec} is
+ * Where {@code @raw/my_spec} is a raw JSON resource. Because the {@link DesignSpec} is
  * defined in an Android resource, you can vary it according to the target form factor using
  * well-known resource qualifiers making it easy to define different specs for phones and tablets.
  *

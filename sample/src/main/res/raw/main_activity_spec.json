@@ -3,23 +3,23 @@
     "baselineGridCellSize": 8,
     "keylines": [
         { "offset": 16,
-          "from": LEFT },
+          "from": "LEFT" },
         { "offset": 72,
-          "from": LEFT },
+          "from": "LEFT" },
         { "offset": 16,
-          "from": RIGHT },
+          "from": "RIGHT" },
         { "offset": 72,
-          "from": TOP }
+          "from": "TOP" }
     ],
     "spacings": [
         { "offset": 0,
           "size": 16,
-          "from": LEFT },
+          "from": "LEFT" },
         { "offset": 56,
           "size": 16,
-          "from": LEFT },
+          "from": "LEFT" },
         { "offset": 0,
           "size": 16,
-          "from": RIGHT }
+          "from": "RIGHT" }
     ]
 }
