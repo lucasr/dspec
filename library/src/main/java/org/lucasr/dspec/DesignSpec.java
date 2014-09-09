@@ -207,11 +207,11 @@ public class DesignSpec {
 
     private boolean mKeylinesVisible = DEFAULT_KEYLINES_VISIBLE;
     private final Paint mKeylinesPaint;
-    private List<Keyline> mKeylines;
+    private final List<Keyline> mKeylines;
 
     private boolean mSpacingsVisible = DEFAULT_SPACINGS_VISIBLE;
     private final Paint mSpacingsPaint;
-    private List<Spacing> mSpacings;
+    private final List<Spacing> mSpacings;
 
     public DesignSpec(View hostView) {
         mHostView = hostView;
