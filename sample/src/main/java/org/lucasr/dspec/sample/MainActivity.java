@@ -13,7 +13,7 @@ import butterknife.InjectView;
 
 public final class MainActivity extends Activity {
     @InjectView(R.id.list) ListView mList;
-    @InjectView(R.id.design_spec_layout) DesignSpecFrameLayout mDesignSpecLayout;
+    @InjectView(R.id.spec_layout) DesignSpecFrameLayout mDesignSpecLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
