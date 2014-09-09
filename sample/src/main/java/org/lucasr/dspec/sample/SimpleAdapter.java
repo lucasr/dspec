@@ -65,10 +65,8 @@ public class SimpleAdapter extends BaseAdapter {
     }
 
     static class Holder {
-        @InjectView(R.id.item_image)
-        ImageView imageView;
-        @InjectView(R.id.item_title)
-        TextView titleView;
+        @InjectView(R.id.item_image) ImageView imageView;
+        @InjectView(R.id.item_title) TextView titleView;
         @InjectView(R.id.item_subtitle) TextView subtitleView;
 
         Holder(View view) {
