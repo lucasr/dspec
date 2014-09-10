@@ -98,19 +98,23 @@ public class SimpleAdapter extends BaseAdapter {
         mPicasso = Picasso.with(context);
     }
 
-    @Override public int getCount() {
+    @Override
+    public int getCount() {
         return ITEMS.length;
     }
 
-    @Override public Item getItem(int position) {
+    @Override
+    public Item getItem(int position) {
         return ITEMS[position];
     }
 
-    @Override public long getItemId(int position) {
+    @Override
+    public long getItemId(int position) {
         return position;
     }
 
-    @Override public View getView(int position, View convertView, ViewGroup parent) {
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.item, parent, false);
             convertView.setTag(new Holder(convertView));
