@@ -17,8 +17,7 @@
 
 <resources>
 
-    <string name="app_name">DSpec Sample</string>
-    <string name="launcher_name">DSpec</string>
+    <string name="app_name">dspec</string>
     <string name="show_baseline_grid">Show baseline grid</string>
     <string name="show_keylines">Show keylines</string>
     <string name="show_spacings">Show spacings</string>
