@@ -322,7 +322,7 @@ public class DesignSpec {
      * Adds a keyline to the {@link DesignSpec}.
      */
     public DesignSpec addKeyline(float position, From from) {
-        final Keyline keyline = new Keyline(position, from);
+        final Keyline keyline = new Keyline(position * mDensity, from);
         if (mKeylines.contains(keyline)) {
             return this;
         }
@@ -370,7 +370,7 @@ public class DesignSpec {
      * Adds a spacing mark to the {@link DesignSpec}.
      */
     public DesignSpec addSpacing(float position, float size, From from) {
-        final Spacing spacing = new Spacing(position, size, from);
+        final Spacing spacing = new Spacing(position * mDensity, size * mDensity, from);
         if (mSpacings.contains(spacing)) {
             return this;
         }
@@ -416,23 +416,23 @@ public class DesignSpec {
             switch (keyline.from) {
                 case LEFT:
                 case TOP:
-                    position = mDensity * keyline.position;
+                    position = keyline.position;
                     break;
 
                 case RIGHT:
-                    position = width - (mDensity * keyline.position);
+                    position = width - keyline.position;
                     break;
 
                 case BOTTOM:
-                    position = height - (mDensity * keyline.position);
+                    position = height - keyline.position;
                     break;
 
                 case VERTICAL_CENTER:
-                    position = (height / 2) + (mDensity * keyline.position);
+                    position = (height / 2) + keyline.position;
                     break;
 
                 case HORIZONTAL_CENTER:
-                    position = (width / 2) + (mDensity * keyline.position);
+                    position = (width / 2) + keyline.position;
                     break;
 
                 default:
@@ -472,28 +472,28 @@ public class DesignSpec {
             switch (spacing.from) {
                 case LEFT:
                 case TOP:
-                    position1 = mDensity * spacing.offset;
-                    position2 = position1 + (mDensity * spacing.size);
+                    position1 = spacing.offset;
+                    position2 = position1 + spacing.size;
                     break;
 
                 case RIGHT:
-                    position1 = width - (mDensity * (spacing.offset + spacing.size));
-                    position2 = width - (mDensity * spacing.offset);
+                    position1 = width - spacing.offset + spacing.size;
+                    position2 = width - spacing.offset;
                     break;
 
                 case BOTTOM:
-                    position1 = height - (mDensity * (spacing.offset + spacing.size));
-                    position2 = height - (mDensity * spacing.offset);
+                    position1 = height - spacing.offset + spacing.size;
+                    position2 = height - spacing.offset;
                     break;
 
                 case VERTICAL_CENTER:
-                    position1 = (height / 2) + (mDensity * spacing.offset);
-                    position2 = position1 + (mDensity * spacing.size);
+                    position1 = (height / 2) + spacing.offset;
+                    position2 = position1 + spacing.size;
                     break;
 
                 case HORIZONTAL_CENTER:
-                    position1 = (width / 2) + (mDensity * spacing.offset);
-                    position2 = position1 + (mDensity * spacing.size);
+                    position1 = (width / 2) + spacing.offset;
+                    position2 = position1 + spacing.size;
                     break;
 
                 default:
