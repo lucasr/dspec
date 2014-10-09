@@ -19,6 +19,7 @@ package org.lucasr.dspec;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
@@ -51,6 +52,7 @@ public class DesignSpecFrameLayout extends FrameLayout {
 
         final int resId = a.getResourceId(R.styleable.DesignSpecFrameLayout_designSpec, 0);
         mDesignSpec = DesignSpec.fromResource(this, resId);
+        mDesignSpec.setCallback(this);
 
         a.recycle();
     }
@@ -61,6 +63,15 @@ public class DesignSpecFrameLayout extends FrameLayout {
 
         if (mDesignSpec != null) {
             mDesignSpec.draw(canvas);
+        }
+    }
+
+    @Override
+    public void invalidateDrawable(Drawable dr) {
+        if (dr == mDesignSpec) {
+            invalidate();
+        } else {
+            super.invalidateDrawable(dr);
         }
     }
 

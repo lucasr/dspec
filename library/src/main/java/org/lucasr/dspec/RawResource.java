@@ -29,12 +29,11 @@ import java.io.InputStreamReader;
 import java.io.StringWriter;
 
 class RawResource {
-    public static JSONObject getAsJSON(Context context, int id) throws IOException {
+    public static JSONObject getAsJSON(Resources resources, int id) throws IOException {
         InputStreamReader reader = null;
 
         try {
-            final Resources res = context.getResources();
-            final InputStream is = res.openRawResource(id);
+            final InputStream is = resources.openRawResource(id);
             if (is == null) {
                 return null;
             }

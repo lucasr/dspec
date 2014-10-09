@@ -16,9 +16,15 @@
 
 package org.lucasr.dspec;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import org.json.JSONArray;
@@ -103,9 +109,7 @@ import java.util.List;
  * @see DesignSpecFrameLayout
  * @see #fromResource(View, int)
  */
-public class DesignSpec {
-    private final View mHostView;
-
+public class DesignSpec extends Drawable {
     private static final boolean DEFAULT_BASELINE_GRID_VISIBLE = false;
     private static final boolean DEFAULT_KEYLINES_VISIBLE = true;
     private static final boolean DEFAULT_SPACINGS_VISIBLE = true;
@@ -199,6 +203,8 @@ public class DesignSpec {
         }
     }
 
+    private final View mHostView;
+
     private final float mDensity;
 
     private boolean mBaselineGridVisible = DEFAULT_BASELINE_GRID_VISIBLE;
@@ -213,9 +219,9 @@ public class DesignSpec {
     private final Paint mSpacingsPaint;
     private final List<Spacing> mSpacings;
 
-    public DesignSpec(View hostView) {
+    public DesignSpec(Resources resources, View hostView) {
         mHostView = hostView;
-        mDensity = mHostView.getResources().getDisplayMetrics().density;
+        mDensity = resources.getDisplayMetrics().density;
 
         mKeylines = new ArrayList<Keyline>();
         mSpacings = new ArrayList<Spacing>();
@@ -249,7 +255,7 @@ public class DesignSpec {
         }
 
         mBaselineGridVisible = visible;
-        mHostView.invalidate();
+        invalidateSelf();
 
         return this;
     }
@@ -264,7 +270,7 @@ public class DesignSpec {
         }
 
         mBaselineGridCellSize = cellSize;
-        mHostView.invalidate();
+        invalidateSelf();
 
         return this;
     }
@@ -278,7 +284,7 @@ public class DesignSpec {
         }
 
         mBaselineGridPaint.setColor(color);
-        mHostView.invalidate();
+        invalidateSelf();
 
         return this;
     }
@@ -299,7 +305,7 @@ public class DesignSpec {
         }
 
         mKeylinesVisible = visible;
-        mHostView.invalidate();
+        invalidateSelf();
 
         return this;
     }
@@ -313,7 +319,7 @@ public class DesignSpec {
         }
 
         mKeylinesPaint.setColor(color);
-        mHostView.invalidate();
+        invalidateSelf();
 
         return this;
     }
@@ -347,7 +353,7 @@ public class DesignSpec {
         }
 
         mSpacingsVisible = visible;
-        mHostView.invalidate();
+        invalidateSelf();
 
         return this;
     }
@@ -361,7 +367,7 @@ public class DesignSpec {
         }
 
         mSpacingsPaint.setColor(color);
-        mHostView.invalidate();
+        invalidateSelf();
 
         return this;
     }
@@ -384,8 +390,8 @@ public class DesignSpec {
             return;
         }
 
-        final int width = mHostView.getWidth();
-        final int height = mHostView.getHeight();
+        final int width = getIntrinsicWidth();
+        final int height = getIntrinsicHeight();
 
         float x = mBaselineGridCellSize;
         while (x < width) {
@@ -405,8 +411,8 @@ public class DesignSpec {
             return;
         }
 
-        final int width = mHostView.getWidth();
-        final int height = mHostView.getHeight();
+        final int width = getIntrinsicWidth();
+        final int height = getIntrinsicHeight();
 
         final int count = mKeylines.size();
         for (int i = 0; i < count; i++) {
@@ -460,8 +466,8 @@ public class DesignSpec {
             return;
         }
 
-        final int width = mHostView.getWidth();
-        final int height = mHostView.getHeight();
+        final int width = getIntrinsicWidth();
+        final int height = getIntrinsicHeight();
 
         final int count = mSpacings.size();
         for (int i = 0; i < count; i++) {
@@ -521,33 +527,65 @@ public class DesignSpec {
      * {@link View#onDraw(Canvas)} method if you're not simply enclosing it with a
      * {@link DesignSpecFrameLayout}.
      */
+    @Override
     public void draw(Canvas canvas) {
         drawSpacings(canvas);
         drawBaselineGrid(canvas);
         drawKeylines(canvas);
     }
 
+    @Override
+    public int getIntrinsicWidth() {
+        return mHostView.getWidth();
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return mHostView.getHeight();
+    }
+
+    @Override
+    public void setAlpha(int alpha) {
+        mBaselineGridPaint.setAlpha(alpha);
+        mKeylinesPaint.setAlpha(alpha);
+        mSpacingsPaint.setAlpha(alpha);
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter cf) {
+        mBaselineGridPaint.setColorFilter(cf);
+        mKeylinesPaint.setColorFilter(cf);
+        mSpacingsPaint.setColorFilter(cf);
+    }
+
+    @Override
+    public int getOpacity() {
+        return  PixelFormat.TRANSLUCENT;
+    }
+
     /**
-     * Creates a new {@link DesignSpec} instance from a resource ID.
+     * Creates a new {@link DesignSpec} instance from a resource ID using a {@link View}
+     * that will provide the {@link DesignSpec}'s intrinsic dimensions.
      *
-     * @param hostView The {@link View} who will own the new {@link DesignSpec} instance.
+     * @param view The {@link View} who will own the new {@link DesignSpec} instance.
      * @param resId The resource ID pointing to a raw JSON resource.
      * @return The newly created {@link DesignSpec} instance.
      */
-    public static DesignSpec fromResource(View hostView, int resId) {
-        final DesignSpec spec = new DesignSpec(hostView);
+    public static DesignSpec fromResource(View view, int resId) {
+        final Resources resources = view.getResources();
+        final DesignSpec spec = new DesignSpec(resources, view);
         if (resId == 0) {
             return spec;
         }
 
         final JSONObject json;
         try {
-            json = RawResource.getAsJSON(hostView.getContext(), resId);
+            json = RawResource.getAsJSON(resources, resId);
         } catch (IOException e) {
             throw new IllegalStateException("Could not read design spec resource", e);
         }
 
-        final float density = hostView.getResources().getDisplayMetrics().density;
+        final float density = resources.getDisplayMetrics().density;
 
         spec.setBaselineGridCellSize(density * json.optInt(JSON_KEY_BASELINE_GRID_CELL_SIZE,
                 DEFAULT_BASELINE_GRID_CELL_SIZE_DIP));

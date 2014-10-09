@@ -3,7 +3,7 @@
     package="org.lucasr.dspec"
     android:versionCode="1">
 
-    <uses-sdk android:minSdkVersion="14"/>
+    <uses-sdk android:minSdkVersion="9"/>
 
     <application/>
 
