@@ -106,6 +106,14 @@ import java.util.List;
  * defined in an Android resource, you can vary it according to the target form factor using
  * well-known resource qualifiers making it easy to define different specs for phones and tablets.
  *
+ * Because {@link DesignSpec} is a {@link Drawable}, you can simply add it to any
+ * {@link android.view.ViewOverlay} if you're running your app on API level >= 18:
+ *
+ * <pre>
+ * DesignSpec designSpec = DesignSpec.fromResource(someView, R.raw.some_spec);
+ * someView.getOverlay().add(designSpec);
+ * </pre>
+ *
  * @see DesignSpecFrameLayout
  * @see #fromResource(View, int)
  */

@@ -11,7 +11,7 @@ Usage
 -----
 
 Enclose the target UI with a `DesignSpecFrameLayout`, usually the root of your view hierarchy.
-Get the associated `DesignSpec` instance with `getDesignSpec` and then you can: 
+Get the associated `DesignSpec` instance with `getDesignSpec` and then you can:
 
  * Toggle baseline grid visibility with `setBaselineGridVisible(boolean)`.
  * Change baseline grid cell width with `setBaselineGridCellSize(int)`.
@@ -50,6 +50,15 @@ You can also specify the design spec in a raw JSON resource like:
     ]
 }
 ```
+
+Because `DesignSpec` is a `Drawable`, you can simply add it to a
+`ViewOverlay` if you're running your app on API level >= 18:
+
+```java
+DesignSpec designSpec = DesignSpec.fromResource(someView, R.raw.some_spec);
+someView.getOverlay().add(designSpec);
+```
+
 
 
 Download
