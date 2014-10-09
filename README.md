@@ -66,14 +66,14 @@ Download
 
 Download [the latest JAR][1] or grab via Gradle:
 ```groovy
-compile 'org.lucasr.dspec:dspec:0.1.0'
+compile 'org.lucasr.dspec:dspec:0.1.1'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>org.lucasr.dspec</groupId>
   <artifactId>dspec</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
